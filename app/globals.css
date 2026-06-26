@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+/* ============================================================
+   GLOBAL STYLES — Islamic Theme
+   ============================================================ */
+
+@theme inline {
+  --color-background: #f0fdf4;
+  --color-foreground: #1a1a2e;
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Full height body */
+body {
+  height: 100dvh;
+  overflow: hidden;
+}
+
+/* Custom scrollbar for chat */
+.overflow-y-auto {
+  scrollbar-width: thin;
+  scrollbar-color: #d1d5db transparent;
+}
+
+.overflow-y-auto::-webkit-scrollbar {
+  width: 5px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb {
+  background-color: #d1d5db;
+  border-radius: 10px;
+}
+
+/* Typing animation delay helpers */
+.animate-bounce:nth-child(1) {
+  animation-delay: 0ms;
+}
+.animate-bounce:nth-child(2) {
+  animation-delay: 150ms;
+}
+.animate-bounce:nth-child(3) {
+  animation-delay: 300ms;
+}
+
+/* Prevent textarea from showing scrollbar when not needed */
+textarea {
+  scrollbar-width: none;
+}
+textarea::-webkit-scrollbar {
+  display: none;
+}
