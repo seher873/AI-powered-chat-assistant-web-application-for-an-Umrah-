@@ -26,6 +26,8 @@ export interface BusinessInfo {
   companyName: string
   tagline: string
   phone: string
+  phone2?: string
+  phone3?: string
   whatsapp: string
   email: string
   address: string
@@ -64,8 +66,10 @@ const businessData: BusinessData = {
   business: {
     companyName: "Karwan-e-Malik & Abu Amara Umrah Group",
     tagline: "🌙 Rabi-ul-Awwal ki barkatain — 20 Days Special Umrah Package",
-    phone: "+92 3182383595",
-    whatsapp: "923182383595",
+    phone: "+92 312-2020800",
+    phone2: "0333-3762600",
+    phone3: "0313-2809738",
+    whatsapp: "923122020800",
     email: "info@karwanemalik.com",
     address: "Karachi, Pakistan",
     website: "www.karwanemalik.com",
@@ -263,7 +267,7 @@ const businessData: BusinessData = {
     {
       question: "What is your contact number?",
       answer:
-        "You can reach us at +92 3182383595, on WhatsApp at +92 3182383595, or email info@karwanemalik.com. We're available 24/7 for your assistance.",
+        "You can reach us at:\n📞 +92 312-2020800\n📞 0333-3762600\n📞 0313-2809738\n💬 WhatsApp: +92 312-2020800\n📧 Email: info@karwanemalik.com\n\nWe're available 24/7 for your assistance.",
     },
     {
       question: "Can I customize my Umrah package?",
@@ -323,8 +327,10 @@ Kripya neeche diye gaye sawaalon mein se koi ek chunein ya apna sawaal type kare
 
   fallbackMessage: `Shukriya aapke sawaal ke liye. Mazeed tafseel aur personal assistance ke liye, barah-e-karam hmare travel consultant se raabta karein:
 
-📞 Call: +92 3182383595
-💬 WhatsApp: +92 3182383595
+📞 Call: +92 312-2020800
+📞 Phone 2: 0333-3762600
+📞 Phone 3: 0313-2809738
+💬 WhatsApp: +92 312-2020800
 📧 Email: info@karwanemalik.com
 
 Hum aap ki har qadam par madad ke liye maujood hain. Allah aap ke safar ko mubarak kare! 🤲`,

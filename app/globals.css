@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* ============================================================
-   GLOBAL STYLES — Islamic Theme
+   GLOBAL STYLES — Islamic Theme with Dark Mode
    ============================================================ */
 
 @theme inline {
@@ -9,20 +9,42 @@
   --color-foreground: #1a1a2e;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --animate-fadeIn: fadeIn 0.5s ease-out;
+  --animate-slideUp: slideUp 0.4s ease-out;
+  --animate-pulse-slow: pulse 3s infinite;
 }
 
-/* Smooth scrolling */
+/* Dark mode styles */
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f0fdf4;
+  --text-primary: #1a1a2e;
+  --text-secondary: #4b5563;
+  --border-color: #e5e7eb;
+}
+
+.dark {
+  --bg-primary: #0f172a;
+  --bg-secondary: #0f172a;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --border-color: #1e293b;
+}
+
+/* Full height */
 html {
   scroll-behavior: smooth;
+  height: 100%;
 }
 
-/* Full height body */
 body {
   height: 100dvh;
   overflow: hidden;
+  background: var(--bg-primary);
+  color: var(--text-primary);
 }
 
-/* Custom scrollbar for chat */
+/* Custom scrollbar */
 .overflow-y-auto {
   scrollbar-width: thin;
   scrollbar-color: #d1d5db transparent;
@@ -41,21 +63,89 @@ body {
   border-radius: 10px;
 }
 
-/* Typing animation delay helpers */
-.animate-bounce:nth-child(1) {
-  animation-delay: 0ms;
-}
-.animate-bounce:nth-child(2) {
-  animation-delay: 150ms;
-}
-.animate-bounce:nth-child(3) {
-  animation-delay: 300ms;
+.dark .overflow-y-auto::-webkit-scrollbar-thumb {
+  background-color: #475569;
 }
 
-/* Prevent textarea from showing scrollbar when not needed */
+/* Textarea reset */
 textarea {
   scrollbar-width: none;
 }
+
 textarea::-webkit-scrollbar {
   display: none;
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Typing animation */
+.typing-dot:nth-child(1) {
+  animation-delay: 0ms;
+}
+.typing-dot:nth-child(2) {
+  animation-delay: 150ms;
+}
+.typing-dot:nth-child(3) {
+  animation-delay: 300ms;
+}
+
+/* Voice button animation */
+@keyframes listening-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgba(239, 68, 68, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+  }
+}
+
+.listening-pulse {
+  animation: listening-pulse 1.5s infinite;
+}
+
+/* Smooth sidebar transition */
+.sidebar-enter {
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Utility for message animation */
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out;
 }
