@@ -156,7 +156,7 @@ export default function ChatInterface() {
                   </div>
                   <div className="relative overflow-hidden rounded-xl shadow-sm ring-1 ring-emerald-100 dark:ring-emerald-900/50">
                     <Image
-                      src="/img.jpeg"
+                      src="/honor-pic.jpeg"
                       alt="Promotion 2"
                       width={400}
                       height={250}
