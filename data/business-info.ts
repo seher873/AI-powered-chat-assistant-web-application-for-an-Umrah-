@@ -325,15 +325,22 @@ Mein aapka virtual travel assistant hoon. Main aapki madad kar sakta hoon:
 
 Kripya neeche diye gaye sawaalon mein se koi ek chunein ya apna sawaal type karein.`,
 
-  fallbackMessage: `Shukriya aapke sawaal ke liye. Mazeed tafseel aur personal assistance ke liye, barah-e-karam hmare travel consultant se raabta karein:
+  fallbackMessage: `Shukriya aapke sawaal ke liye. Main samajh gaya, lekin mazeed tafseel ke liye neeche diye gaye sawaalon mein se koi ek chunein ya apna sawaal dobara type karein:
 
+🌙 Rabi-ul-Awwal Special 20 Days Package
+🕋 Umrah Packages
+📄 Visa Information
+🏨 Hotel Details
+🚌 Transport Services
+📋 Booking Process
+
+Ya phir direct hmare travel consultant se raabta karein:
 📞 Call: +92 312-2020800
-📞 Phone 2: 0333-3762600
-📞 Phone 3: 0313-2809738
+📞 0333-3762600
+📞 0313-2809738
 💬 WhatsApp: +92 312-2020800
-📧 Email: info@karwanemalik.com
 
-Hum aap ki har qadam par madad ke liye maujood hain. Allah aap ke safar ko mubarak kare! 🤲`,
+Hum aap ki har qadam par madad ke liye maujood hain. 🤲`,
 }
 
 export default businessData
