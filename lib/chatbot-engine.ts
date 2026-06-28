@@ -116,22 +116,13 @@ function getAllPackagesSummary(): string {
 // ---- Intent Handlers ----
 
 const intents: { match: (text: string) => boolean; handler: IntentHandler }[] = [
-  // ---- Special 20 Days Package ----
+  // ---- Special 20 Days Package (Rabi-ul-Awwal) ----
   {
     match: (text) =>
-      hasAny(text, ["20 din", "20 day", "rabi", "rabi-ul-awwal", "special 20", "special package", "12 rabi"]) &&
-      hasAny(text, ["package", "umrah", "qeemat", "price", "detail", "kya hai", "maloomat", "includes"]),
-    handler: () => {
-      const pkg = businessData.packages.find((p) => p.id === "special20")
-      return {
-        text: pkg ? formatPackage(pkg) : businessData.fallbackMessage,
-        quickReplies: ["📞 Contact Agent", "💬 WhatsApp", "Booking Process"],
-      }
-    },
-  },
-  {
-    match: (text) =>
-      hasAll(text, ["20", "package"]) || hasAll(text, ["rabi", "package"]) || text.includes("special package") || text.includes("20 din"),
+      hasAny(text, ["20 din", "20 day", "20 days", "rabi", "rabi ul awwal", "rabi-ul-awwal",
+        "special 20", "special package", "12 rabi", "bist din", "20 dino ka",
+        "rabiulawal", "rabi ul awal", "rabiul awal", "rabiul awwal",
+        "twenty", "twenty day"]),
     handler: () => {
       const pkg = businessData.packages.find((p) => p.id === "special20")
       return {
@@ -143,7 +134,9 @@ const intents: { match: (text: string) => boolean; handler: IntentHandler }[] = 
   // ---- All Packages ----
   {
     match: (text) =>
-      hasAny(text, ["all packages", "all umrah", "show packages", "list packages", "what packages", "sab package", "tamam", "package list"]),
+      hasAny(text, ["all packages", "all umrah", "show packages", "list packages", "what packages",
+        "sab package", "tamam", "package list", "sare package", "kya packages hain",
+        "kya package hain", "batayein", "packages dikhayein"]),
     handler: () => ({
       text: getAllPackagesSummary(),
       quickReplies: ["20 Days Special", "Economy Package", "Premium Package", "Family Package"],
@@ -152,8 +145,8 @@ const intents: { match: (text: string) => boolean; handler: IntentHandler }[] = 
   // ---- Economy ----
   {
     match: (text) =>
-      hasAny(text, ["economy", "basic", "standard", "cheapest", "low cost", "budget", "sasta"]) &&
-      hasAny(text, ["package", "umrah", "price", "cost", "pricing", "rate", "qeemat"]),
+      hasAny(text, ["economy", "basic", "standard", "cheapest", "low cost", "budget", "sasta",
+        "sasti", "kam qeemat", "arzan"]),
     handler: () => {
       const pkg = businessData.packages.find((p) => p.id === "economy")
       return {
@@ -165,8 +158,8 @@ const intents: { match: (text: string) => boolean; handler: IntentHandler }[] = 
   // ---- Premium ----
   {
     match: (text) =>
-      hasAny(text, ["premium", "deluxe", "vip", "luxury", "best", "acha"]) &&
-      hasAny(text, ["package", "umrah", "price", "cost", "pricing", "rate"]),
+      hasAny(text, ["premium", "deluxe", "vip", "luxury", "best", "acha", "accha",
+        "umda", "khas", "special", "mehnga", "top"]),
     handler: () => {
       const pkg = businessData.packages.find((p) => p.id === "premium")
       return {
@@ -178,8 +171,8 @@ const intents: { match: (text: string) => boolean; handler: IntentHandler }[] = 
   // ---- Family ----
   {
     match: (text) =>
-      hasAny(text, ["family", "group", "children", "kids", "family package", "khandaan"]) &&
-      hasAny(text, ["package", "umrah", "price", "cost", "pricing", "rate"]),
+      hasAny(text, ["family", "group", "children", "kids", "khandaan", "khandani",
+        "pooray khandan", "bache", "bachy", "grup"]),
     handler: () => {
       const pkg = businessData.packages.find((p) => p.id === "family")
       return {
@@ -191,8 +184,9 @@ const intents: { match: (text: string) => boolean; handler: IntentHandler }[] = 
   // ---- General Package Info ----
   {
     match: (text) =>
-      hasAny(text, ["package", "umrah package", "pricing", "price", "cost", "how much", "qeemat", "kitna"]) &&
-      !hasAny(text, ["visa", "hotel", "transport", "book"]),
+      hasAny(text, ["package", "umrah package", "pricing", "price", "cost", "how much",
+        "qeemat", "kitna", "rate", "mulya", "daam", "kya hai"]) &&
+      !hasAny(text, ["visa", "hotel", "transport", "book", "booking", "gift", "hadaya"]),
     handler: () => ({
       text: getAllPackagesSummary(),
       quickReplies: ["20 Days Special", "Economy Package", "Premium Package", "Family Package"],
@@ -200,7 +194,9 @@ const intents: { match: (text: string) => boolean; handler: IntentHandler }[] = 
   },
   // ---- Visa ----
   {
-    match: (text) => hasAny(text, ["visa", "document", "passport", "requirement", "needed for umrah", "dastavej"]),
+    match: (text) =>
+      hasAny(text, ["visa", "viza", "document", "passport", "requirement", "needed for umrah",
+        "dastavej", "dastavez", "papers", "paper", "kaghaz", "kagzat"]),
     handler: () => ({
       text: `*Visa Information*
 ━━━━━━━━━━━━━━━━━━
@@ -218,7 +214,9 @@ We handle all visa paperwork for you!`,
   // ---- Hotels ----
   {
     match: (text) =>
-      hasAny(text, ["hotel", "accommodation", "stay", "room", "makkah", "madinah", "where to stay", "rahne"]),
+      hasAny(text, ["hotel", "accommodation", "stay", "room", "makkah", "madinah",
+        "where to stay", "rahne", "rehne", "rahy ga", "theherna",
+        "ibrahim khalil", "shuttle hotel", "haram"]),
     handler: () => {
       const hotelInfo = businessData.packages
         .map((pkg) => `🏨 *${pkg.name}:* ${pkg.hotel.split("(")[0].trim()}`)
@@ -238,7 +236,9 @@ Contact us for specific hotel names and room availability.`,
   // ---- Transport ----
   {
     match: (text) =>
-      hasAny(text, ["transport", "transfer", "airport", "bus", "car", "pickup", "drop", "ziyarat", "travel", "safar", "bus"]),
+      hasAny(text, ["transport", "transfer", "airport", "bus", "car", "pickup", "drop",
+        "ziyarat", "ziyart", "travel", "safar", "sawari", "gaari",
+        "gari", "riding", "pick and drop"]),
     handler: () => {
       const transportInfo = businessData.packages
         .map((pkg) => `🚌 *${pkg.name}:* ${pkg.transport}`)
@@ -258,7 +258,9 @@ All our vehicles are air-conditioned, comfortable, and driven by experienced pro
   // ---- Booking ----
   {
     match: (text) =>
-      hasAny(text, ["book", "booking", "reserve", "reservation", "how to", "process", "register", "sign up", "tareeqa", "booking kaise"]),
+      hasAny(text, ["book", "booking", "reserve", "reservation", "how to", "process",
+        "register", "sign up", "tareeqa", "booking kaise", "kaise book karein",
+        "book kaise karein", "book karna", "book kro", "book karo"]),
     handler: () => ({
       text: `*Booking Procedure*
 ━━━━━━━━━━━━━━━━━━
@@ -272,7 +274,9 @@ Ready to start? Contact us now!`,
   },
   // ---- Gifts / Hadaya ----
   {
-    match: (text) => hasAny(text, ["gift", "hadaya", "free", "ihram", "scarf", "bag", "shoe"]),
+    match: (text) =>
+      hasAny(text, ["gift", "hadaya", "free", "ihram", "scarf", "bag", "shoe",
+        "tohfa", "mufat", "muft", "extra"]),
     handler: () => {
       const pkg = businessData.packages.find((p) => p.id === "special20")
       if (pkg?.gifts) {
@@ -296,8 +300,8 @@ Yeh gifts sirf hmare Special 20 Days Package ke sath hain!`,
   // ---- Pricing ----
   {
     match: (text) =>
-      hasAny(text, ["270", "280", "300", "320", "270000", "280000", "300000", "320000", "sharing", "quad", "triple", "double"]) &&
-      hasAny(text, ["price", "qeemat", "kitna", "rupay", "pkr"]),
+      hasAny(text, ["270", "280", "300", "320", "270000", "280000", "300000", "320000",
+        "sharing", "quad", "triple", "double", "per person", "fi kafee"]),
     handler: () => {
       const pkg = businessData.packages.find((p) => p.id === "special20")
       if (pkg?.pricing) {
@@ -316,7 +320,10 @@ Sabhi rates per person hain. Family ya group discounts ke liye contact karein.`,
   },
   // ---- Payment ----
   {
-    match: (text) => hasAny(text, ["payment", "pay", "deposit", "installment", "card", "bank", "jazzcash", "easypaisa", "adaiagi"]),
+    match: (text) =>
+      hasAny(text, ["payment", "pay", "deposit", "installment", "card", "bank",
+        "jazzcash", "easypaisa", "adaiagi", "paisa", "pesa", "advance",
+        "qist", "qishton"]),
     handler: () => ({
       text: `*Payment Policy*
 ━━━━━━━━━━━━━━━━━━
@@ -329,7 +336,8 @@ Kisi bhi qisam ki payment ke liye rabta karein.`,
   // ---- Refund / Cancellation ----
   {
     match: (text) =>
-      hasAny(text, ["refund", "cancel", "cancellation", "money back", "return", "wapsi", "mansookh"]),
+      hasAny(text, ["refund", "cancel", "cancellation", "money back", "return",
+        "wapsi", "mansookh", "radd", "cancelation", "cancle"]),
     handler: () => ({
       text: `*Refund & Cancellation Policy*
 ━━━━━━━━━━━━━━━━━━
@@ -342,7 +350,9 @@ For any questions, please contact us directly.`,
   // ---- Contact ----
   {
     match: (text) =>
-      hasAny(text, ["contact", "phone", "number", "call", "email", "address", "office", "reach", "talk", "agent", "consultant", "support", "help", "raabta", "madad"]),
+      hasAny(text, ["contact", "phone", "number", "call", "email", "address", "office",
+        "reach", "talk", "agent", "consultant", "support", "help",
+        "raabta", "madad", "rabta", "mujh se", "baat", "baat karni"]),
     handler: () => ({
       text: `*Contact Information*
 ━━━━━━━━━━━━━━━━━━
@@ -362,7 +372,9 @@ Hum aap ki madad ke liye 24/7 maujood hain!`,
   // ---- Greetings ----
   {
     match: (text) =>
-      hasAny(text, ["assalamu", "salam", "hello", "hi", "hey", "good morning", "good evening", "peace", "adaab", "khush amdeed"]),
+      hasAny(text, ["assalamu", "salam", "slam", "hello", "hi", "hey", "good morning",
+        "good evening", "peace", "adaab", "khush amdeed", "walekum",
+        "walaikum", "aslam"]),
     handler: () => ({
       text: `Wa Alaikum Assalam! ${businessData.business.companyName} mein aapka khush amdeed! 🕋
 
@@ -377,7 +389,9 @@ Kya aap hmare Special 20 Days Umrah Package ke baare mein jaanna chahte hain?`,
   },
   // ---- Thanks ----
   {
-    match: (text) => hasAny(text, ["thank", "thanks", "jazzak", "barak", "shukran", "shukriya", "meherbani"]),
+    match: (text) =>
+      hasAny(text, ["thank", "thanks", "jazzak", "barak", "shukran", "shukriya",
+        "meherbani", "thankyou", "thank you", "ok", "theek", "acha"]),
     handler: () => ({
       text: `Aap ka bohat bohat shukriya! 🤲
 
@@ -385,9 +399,62 @@ Allah aap ke Umrah ko qubool farmaye aur aap ko mazeed barkatein ata kare. Agar 
       quickReplies: ["20 Days Special", "Booking Process", "Contact Agent"],
     }),
   },
+  // ---- Taif / Badar Ziyarat ----
+  {
+    match: (text) =>
+      hasAny(text, ["taif", "tayef", "badar", "bader", "ziyarat", "ziyart", "madina tour"]),
+    handler: () => ({
+      text: `*Ziyarat Tours*
+━━━━━━━━━━━━━━━━━━
+Hmare Special 20 Days Package mein ye Ziyarat shamil hain:
+
+🕋 *Taif Ziyarat* — Taif ka historical tour
+🕋 *Badar Ziyarat* — Battle of Badar ka maidan
+🕋 *Makkah Ziyarat* — Historical places in Makkah
+🕋 *Madina Ziyarat* — Madina ke aas paas ke maqamat
+
+Full transport by bus faraham hai.`,
+      quickReplies: ["20 Days Special", "Transport Services", "Contact Agent"],
+    }),
+  },
+  // ---- Airline / Fly Jinnah ----
+  {
+    match: (text) =>
+      hasAny(text, ["fly jinnah", "airline", "flight", "fly", "jinnah", "jedi", "karachi",
+        "airport", "direct flight", "sawat", "hawai jahaj"]),
+    handler: () => {
+      const pkg = businessData.packages.find((p) => p.id === "special20")
+      return {
+        text: pkg ? `*✈️ Airline Information*
+━━━━━━━━━━━━━━━━━━
+Airlines: ${pkg.airline || "Fly Jinnah — Direct Flights"}
+📅 Departure: ${pkg.departure || "20 August — Karachi se Jeddah"}
+📅 Return: ${pkg.return || "8 September — Jeddah se Karachi"}
+🧳 Baggage: ${pkg.baggage || "20 kg + 7 kg hand carry"}` : businessData.fallbackMessage,
+        quickReplies: ["20 Days Special", "Booking Process", "Contact Agent"],
+      }
+    },
+  },
+  // ---- Departure / Dates ----
+  {
+    match: (text) =>
+      hasAny(text, ["20 august", "8 september", "date", "tareekh", "kab", "kab hai",
+        "departure", "rawangi", "wapsi", "kab jana", "kab ana", "safar kab"]),
+    handler: () => {
+      const pkg = businessData.packages.find((p) => p.id === "special20")
+      return {
+        text: pkg ? `*📅 Travel Dates*
+━━━━━━━━━━━━━━━━━━
+✈️ Departure: ${pkg.departure || "20 August — Karachi se Jeddah"}
+✈️ Return: ${pkg.return || "8 September — Jeddah se Karachi"}
+🧳 Baggage Allowance: ${pkg.baggage || "20 kg baggage + 7 kg hand carry"}` : businessData.fallbackMessage,
+        quickReplies: ["20 Days Special", "Booking Process", "Contact Agent"],
+      }
+    },
+  },
   // ---- Specific Quick Questions (for exact match) ----
   {
-    match: (text) => text.includes("20 days special") || text.includes("20 din special") || text === "special20",
+    match: (text) => text === "20 days special" || text === "20 din special" || text === "special20",
     handler: () => {
       const pkg = businessData.packages.find((p) => p.id === "special20")
       return {

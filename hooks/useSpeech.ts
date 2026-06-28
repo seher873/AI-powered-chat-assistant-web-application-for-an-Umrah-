@@ -21,7 +21,7 @@ export function useSpeech() {
       const recognition = new (SpeechRecognitionAPI as any)()
       recognition.continuous = false
       recognition.interimResults = true
-      recognition.lang = "en-US"
+      recognition.lang = "ur-PK"
 
       recognition.onstart = () => setIsListening(true)
       recognition.onend = () => setIsListening(false)
